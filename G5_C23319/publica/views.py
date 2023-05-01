@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Campsite
 from django.http import HttpResponse
 
 
@@ -37,3 +39,18 @@ def login(request):
 
     return render(request,'publica/login.html')
 
+def get_categories(request, category, campsites_list):
+    filtered_campsites = [camp for camp in campsites_list if camp['category'] == category]
+    
+    context = {'campsites_list': filtered_campsites, 'category': category}
+    
+    return render(request, 'campisite_category.html', context)
+
+class CampsiteListView(ListView):
+    model = Campsite
+    template_name = 'campsite_list.html'
+    context_object_name = 'campsites'
+
+    def get_queryset(self):
+        category = self.kwargs['category']
+        return Campsite.objects.filter(category=category)

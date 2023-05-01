@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<html lang= "en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    
+    <link rel="stylesheet" href="{% static 'publica/css/styles.css' %}">
+   
+</head>
+<body>
+    
+    <h1>{{ category }} Campsites</h1>
+
+<ul>
+{% for campsite in campsites %}
+    <li>{{ campisite.name }}</li>
+{% empty %}
+    <li>No campsites found.</li>
+{% endfor %}
+</ul>
+            
+</body>
+</html>
