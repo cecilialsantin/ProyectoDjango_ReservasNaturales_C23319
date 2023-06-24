@@ -26,4 +26,7 @@ urlpatterns = [
     path('rnadmin/', rn_admin.urls),
     path('', include('publica.urls')),
     path('administracion/',include('administracion.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('rn_rest/', include('rn_rest.urls')),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
